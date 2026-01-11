@@ -1,0 +1,25 @@
+#navBarContainer{
+    padding: 0px;
+    margin: 0px;
+    height:80px;
+    background-color: #FF9B00;
+    display: flex;
+    justify-content: space-between;
+}
+#logo-img{
+    margin-left:15px;
+}
+#nav-items{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ul{
+        font-size: 20px;
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
