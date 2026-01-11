@@ -1,0 +1,16 @@
+#footer-container{
+    background-color: black;
+    color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#get-app{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.heading-item{
+    text-decoration: underline;
+    font-weight: bold;
+}
