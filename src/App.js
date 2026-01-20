@@ -4,10 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
+import Body from "./Components/Body";
 const App=()=>{
     return(
         <div>
             <NavBar/>
+            <Body/>
             <Footer/>
         </div>
     )

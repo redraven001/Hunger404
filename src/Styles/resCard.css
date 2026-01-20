@@ -1,0 +1,7 @@
+#res-card{
+    height: 500px;
+    width: 350px;
+    border: 1px solid grey;
+    display: flex;
+    background-color: #f0f0f0;
+}
