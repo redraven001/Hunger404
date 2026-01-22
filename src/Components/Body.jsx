@@ -21,11 +21,11 @@ export default function Body() {
         //use cors proxy if deployed on netlify or vercel
         const res=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5133929&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const jsonData=await res.json();
-        setAllResData(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setResData(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setAllResData(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setResData(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       }
       catch(error){
-        console.log("error getting data",data)
+        console.log("error getting data",error);
       }
       finally{
         setLoading(false);
