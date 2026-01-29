@@ -10,12 +10,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AboutUs from "./Components/AboutUs";
 import ContactUs from "./Components/ContactUs";
 import ErrorElement from "./Components/ErrorElement";
+import RestMenu from "./Components/RestMenu";
 
 const App=()=>{
     return(
-        <div>
+        <div className="app-layout d-flex flex-column">
             <NavBar/>
-            <Outlet/>
+            <div className="page-content"> <Outlet/></div>
             <Footer/>
         </div>
     )
@@ -26,7 +27,8 @@ const appRouter=createBrowserRouter([
             element:<App/>,
             children:[  {path:"/", element:<Body/>,errorElement:<ErrorElement/>},
                         {path:"/about", element:<AboutUs/>,errorElement:<ErrorElement/>},
-                        {path:"/contact", element:<ContactUs/>,errorElement:<ErrorElement/>}
+                        {path:"/contact", element:<ContactUs/>,errorElement:<ErrorElement/>},
+                        {path:"/restaurant/:resid",element:<RestMenu/>,errorElement:<ErrorElement/>}
                     ],
             errorElement:<ErrorElement/>
 
