@@ -1,0 +1,25 @@
+.rest-Card{
+    width: 100%;
+    height: 200px;
+}
+
+.veg-dot{
+    color: green;
+    height: 15px;
+    width: 15px;
+    padding: 2px;
+    border: 1.5px solid green;
+}
+.non-veg-dot{
+    color: red;
+    height: 15px;
+    width: 15px;
+    padding: 2px;
+    border: 1.5px solid red;
+}
+.card-item{
+    height: 300px;
+}
+.add-btn{
+    width: 50px;
+}

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import {Link} from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 
 import RestaurantCard from './RestaurantCard'
 import ShimmerUIRestList from './ShimmerUIRestList';
 
 import '../Styles/serachBar.css'
+import { RESTLIST } from '../assets/Images/constants';
 
 export default function Body() {
     const [allResData,setAllResData]=useState([]);
@@ -19,13 +21,17 @@ export default function Body() {
     const getData=async()=>{
       try{
         //use cors proxy if deployed on netlify or vercel
-        const res=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5133929&lng=77.0722759&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const res=await fetch(RESTLIST);
         const jsonData=await res.json();
-        setAllResData(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setResData(jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        const cards=jsonData?.data?.cards;
+        const restCard = cards.find((item)=>
+          item?.card?.card?.gridElements?.infoWithStyle?.restaurants
+          )
+        setAllResData(restCard?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setResData(restCard?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       }
       catch(error){
-        console.log("error getting data",data)
+        console.log("error getting data",error);
       }
       finally{
         setLoading(false);
@@ -46,10 +52,9 @@ export default function Body() {
                     </div>
                <h3 className=' my-2 text-center'> Popular Restaurant Near You....</h3>
                {loading ? <ShimmerUIRestList/>:
-                    <div className='d-flex flex-wrap justify-content-center gap-1'>{
-                    resData?.map((res,index)=>{
-                        return <RestaurantCard key={res.info.id} resData={res}/>
-                    })}
+                    <div className='d-flex flex-wrap justify-content-center gap-1'>
+                    {resData?.map((res,index)=>
+                      <Link key={res.info.id} to={`/restaurant/${res.info.id}`}><RestaurantCard resData={res}/></Link>)}
                </div>}
            </div>
     </div>
