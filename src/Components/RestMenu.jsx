@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { IMG_URL, RESTMENUURL } from '../assets/Images/constants';
 import { FaStar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
@@ -8,25 +8,10 @@ import ShimmerUIRestList from './ShimmerUIRestList';
 
 import "../Styles/restMenu.css"
 import RestMenuItem from './RestMenuItem';
+import useRestMenuData from '../Utils/customHooks/useRestMenudata';
 export default function RestMenu() {
-    const [restMenuData, setRestMenuData] = useState([]);
-    const [resInfo,setResInfo] = useState([]);
     const {resid} = useParams();
-
-    useEffect(()=>{
-        getMenuData();
-    },[])
-    
-    const getMenuData = async ()=>{
-        const res=await fetch(RESTMENUURL+resid);
-        const jsonData = await res.json();
-        const resInfoCard = jsonData?.data.cards.find((item)=> item?.card?.card?.info)
-        setResInfo(resInfoCard?.card?.card?.info)
-        const rescard= jsonData.data.cards.find((item)=>item?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-        const menuitems = rescard?.groupedCard?.cardGroupMap?.REGULAR?.cards.find((item)=> item?.card?.card?.itemCards);
-        setRestMenuData(menuitems?.card?.card?.itemCards)
-       // console.log(restMenuData);
-    }
+    const {restMenuData,resInfo} = useRestMenuData(resid);
 
     if(resInfo.length===0)return <ShimmerUIRestList/>
 

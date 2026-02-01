@@ -7,12 +7,15 @@ import ShimmerUIRestList from './ShimmerUIRestList';
 
 import '../Styles/serachBar.css'
 import { RESTLIST } from '../assets/Images/constants';
+import useOnline from '../Utils/customHooks/useOnline';
+import Offline from './Offline';
 
 export default function Body() {
     const [allResData,setAllResData]=useState([]);
     const [resData,setResData]=useState([]);
     const [loading,setLoading]=useState(true);
     const [searchText,setSearchText]=useState("");
+    const isOnline = useOnline();
     
     useEffect(()=>{
       getData();
@@ -42,6 +45,7 @@ export default function Body() {
         setResData(filteredResList);
     };
   return (
+    isOnline ?
     <div>
        <div className='my-2'>
                 <div className='w-100 d-flex justify-content-center my-1'>
@@ -57,6 +61,6 @@ export default function Body() {
                       <Link key={res.info.id} to={`/restaurant/${res.info.id}`}><RestaurantCard resData={res}/></Link>)}
                </div>}
            </div>
-    </div>
+    </div> : <Offline/>
   )
 }
