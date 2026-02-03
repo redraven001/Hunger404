@@ -2,11 +2,11 @@ import React from 'react'
 import { FaCircle } from "react-icons/fa6"
 import { FaStar } from "react-icons/fa";
 import '../Styles/restMenu.css'
-import { IMG_URL } from '../assets/Images/constants';
+import { IMG_URL } from '../assets/constants.js';
 import altImg from 'url:../assets/Images/altImg.png'
 
 export default function ({item}) {
-    console.log(item.card.info);
+   // console.log(item.card.info);
    // {item?.card?.info?.name}
    const price = item?.card?.info?.price??item?.card?.info?.defaultPrice;
    const ratingInfo = item?.card?.info?.ratings?.aggregatedRating

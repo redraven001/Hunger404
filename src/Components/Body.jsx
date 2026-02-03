@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 
-import RestaurantCard from './RestaurantCard'
+import RestaurantCard, { resPormoted } from './RestaurantCard'
 import ShimmerUIRestList from './ShimmerUIRestList';
 
 import '../Styles/serachBar.css'
-import { RESTLIST } from '../assets/Images/constants';
+import { RESTLIST } from '../assets/constants.js';
 import useOnline from '../Utils/customHooks/useOnline';
 import Offline from './Offline';
+import { getPromoted } from '../Utils/functions.js';
+
+const PromotedRes = resPormoted();
 
 export default function Body() {
     const [allResData,setAllResData]=useState([]);
@@ -44,6 +47,7 @@ export default function Body() {
         const filteredResList = allResData.filter((res)=>{ return res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase())})
         setResData(filteredResList);
     };
+
   return (
     isOnline ?
     <div>
@@ -58,7 +62,7 @@ export default function Body() {
                {loading ? <ShimmerUIRestList/>:
                     <div className='d-flex flex-wrap justify-content-center gap-1'>
                     {resData?.map((res,index)=>
-                      <Link key={res.info.id} to={`/restaurant/${res.info.id}`}><RestaurantCard resData={res}/></Link>)}
+                      <Link key={res?.info?.id} to={`/restaurant/${res?.info?.id}`}>{getPromoted(res) ?<PromotedRes resData={res}/>:<RestaurantCard resData={res}/>}</Link>)}
                </div>}
            </div>
     </div> : <Offline/>
