@@ -12,12 +12,14 @@ import AboutUs from "./Components/AboutUs";
 import ContactUs from "./Components/ContactUs";
 import ErrorElement from "./Components/ErrorElement";
 import RestMenu from "./Components/RestMenu";
+import ScrollTop from "./Components/ScrollTop.jsx";
 
 const Groceries = lazy(() => import('../src/Components/Groceries.jsx'))
 
 const App=()=>{
     return(
         <div className="app-layout d-flex flex-column">
+            <ScrollTop/>
             <NavBar/>
             <div className="page-content"> <Outlet/></div>
             <Footer/>
