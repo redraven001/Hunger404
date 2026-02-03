@@ -1,7 +1,7 @@
 import React from 'react'
 
 import '../Styles/resCard.css';
-import { IMG_URL } from '../assets/Images/constants';
+import { IMG_URL } from '../assets/constants.js';
 export default function RestaurantCard({resData}) {
   return (
     <div id='res-card' className='d-flex flex-column'>
@@ -15,4 +15,14 @@ export default function RestaurantCard({resData}) {
       </div>
     </div>
   )
+}
+export const  resPormoted = () => {
+  return ({resData})=>{
+    return(
+      <div>
+        <div className='position-absolute bg-secondary bg-gradient text-white p-2 m-2 rounded-pill'>Promoted!!</div>
+        <RestaurantCard resData={resData}/>
+      </div>
+    )
+  }
 }

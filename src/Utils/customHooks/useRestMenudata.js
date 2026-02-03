@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RESTMENUURL } from "../../assets/Images/constants";
+import { RESTMENUURL } from "../../assets/constants";
 
 const useRestMenuData = (resId) => {
     const [restMenuData, setRestMenuData] = useState([]);
@@ -15,8 +15,8 @@ const useRestMenuData = (resId) => {
         const resInfoCard = jsonData?.data.cards.find((item)=> item?.card?.card?.info)
         setResInfo(resInfoCard?.card?.card?.info)
         const rescard= jsonData.data.cards.find((item)=>item?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-        const menuitems = rescard?.groupedCard?.cardGroupMap?.REGULAR?.cards.find((item)=> item?.card?.card?.itemCards);
-        setRestMenuData(menuitems?.card?.card?.itemCards)
+        const menuitems = rescard?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((item)=> item?.card?.card?.["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+        setRestMenuData(menuitems)
     }
     return {restMenuData, resInfo};
 
