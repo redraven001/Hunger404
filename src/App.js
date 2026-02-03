@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useContext, useState } from "react";
 import ReactDOM from "react-dom/client";  
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";  
 
@@ -13,15 +13,23 @@ import ContactUs from "./Components/ContactUs";
 import ErrorElement from "./Components/ErrorElement";
 import RestMenu from "./Components/RestMenu";
 import ScrollTop from "./Components/ScrollTop.jsx";
+import UserContext from "./Utils/UserContext.jsx";
 
 const Groceries = lazy(() => import('../src/Components/Groceries.jsx'))
 
 const App=()=>{
+    const contextData = useContext(UserContext);
+    const [userName,setUserName]=useState("Devendar");
+    const showContext=false;
+
     return(
         <div className="app-layout d-flex flex-column">
             <ScrollTop/>
             <NavBar/>
+            <div className="text-center">{contextData.userName}</div>
+            <UserContext.Provider value={{userName,setUserName,showContext}}>
             <div className="page-content"> <Outlet/></div>
+            </UserContext.Provider>
             <Footer/>
         </div>
     )
