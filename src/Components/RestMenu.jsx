@@ -37,7 +37,7 @@ export default function RestMenu() {
                 <div className='accordion-item' key={item?.card?.card?.title}>
                     <h3 className="accordion-header" >
                         <button className={`accordion-button ${index===0? '' : 'collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${index}`} aria-expanded={index===0? true : false} aria-controls={`collapse${index}`}>
-                            {item?.card?.card?.title}
+                            {`${item?.card?.card?.title}(${item?.card?.card?.itemCards.length})`}
                         </button>
                     </h3> 
                     <div id={`collapse${index}`} className={`accordion-collapse collapse ${index==0? 'show':""}`} aria-labelledby={index} data-bs-parent="#MenuAccordion">
